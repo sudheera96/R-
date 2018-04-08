@@ -1,0 +1,223 @@
+Create a function that takes in a name as a string argument, and prints out "Hello name"
+
+In [1]:
+
+hello_you <- function(name){
+    print(paste('Hello',name))
+}
+
+In [2]:
+
+hello_you('Sam')
+
+[1] "Hello  Sam"
+
+
+Create a function that takes in a name as a string argument and returns a string of the form - "Hello name"
+
+
+In [3]:
+
+hello_you2 <- function(name){
+    return(paste('Hello',name))
+}
+
+In [4]:
+
+print(hello_you2('Sam'))
+
+[1] "Hello Sam"
+
+Create a function that will return the product of two integers.
+
+
+In [5]:
+prod <- function(num1,num2){
+    return(num1*num2)
+}
+
+In [6]:
+prod(3,4)
+
+Out[2]:
+12
+
+Create a function that accepts two arguments, an integer and a vector of integers. It returns TRUE if the integer is present in the vector, otherwise it returns FALSE. Make sure you pay careful attention to your placement of the return(FALSE) line in your function!
+
+
+In [15]:
+num_check <- function(num,v){
+    for (item in v){
+        if (item == num){
+            return(TRUE)
+        }
+    }
+    return(FALSE)
+}
+
+In [17]:
+num_check(2,c(1,2,3))
+
+Out[17]:
+TRUE
+
+
+In [20]:
+num_check(2,c(1,4,5))
+
+Out[20]:
+FALSE
+
+Create a function that accepts two arguments, an integer and a vector of integers. It returns the count of the number of occurences of the integer in the input vector.
+
+
+In [24]:
+num_count <- function(num,v){
+    count = 0
+    for (x in v){
+        if (x == num){
+            count = count + 1
+        }
+    }
+    return(count)
+}
+
+In [25]:
+num_count(2,c(1,1,2,2,3,3))
+
+Out[25]:
+2
+
+
+In [26]:
+num_count(1,c(1,1,2,2,3,1,4,5,5,2,2,1,3))
+
+Out[26]:
+4
+
+ We want to ship bars of aluminum. We will create a function that accepts an integer representing the requested kilograms of aluminum for the package to be shipped. To fullfill these order, we have small bars (1 kilogram each) and big bars (5 kilograms each). Return the least number of bars needed.
+For example, a load of 6 kg requires a minimum of two bars (1 5kg bars and 1 1kg bars). A load of 17 kg requires a minimum of 5 bars (3 5kg bars and 2 1kg bars).
+
+
+In [37]:
+bar_count <- function(pack){
+    amount_of_ones = pack %% 5
+    amount_of_fives = (pack - amount_of_ones)/5
+    return(amount_of_ones+amount_of_fives)
+}
+
+In [39]:
+bar_count(6)
+
+Out[39]:
+2
+
+In [45]:
+bar_count(17)
+
+Out[45]:
+5
+
+Create a function that accepts 3 integer values and returns their sum. However, if an integer value is evenly divisible by 3, then it does not count towards the sum. Return zero if all numbers are evenly divisible by 3. Hint: You may want to use the append() function.
+In [54]:
+summer <- function(a, b, c){
+    out <- c(0)
+    if (a %% 3 != 0){
+        out <- append(a,out)
+    }
+    if (b %% 3 != 0){
+        out <- append(b,out)
+    }
+    if (c %% 3 != 0){
+        out <- append(c,out)
+    }
+    return(sum(out))       
+}
+
+In [56]:
+summer(7,2,3)
+
+Out[56]:
+9
+
+In [57]:
+summer(3,6,9)
+
+Out[57]:
+0
+
+In [58]:
+summer(9,11,12)
+
+Out[58]:
+11
+
+Create a function that will return TRUE if an input integer is prime. Otherwise, return FALSE.
+Lots of ways to solve this one! We won't worry too much about edge cases such as negative numbers, but feel free to add if statements to check for those!
+A number a is divisible by a number b if the result of the division a / b is equal to the result of the integer division a %/% b. Any integer pn can be divided by at least two numbers: 1 and pn. Prime numbers are those than can only be divided by those two. Breaking out the code:
+pn / 1:pn are the results of the divisions by 1, 2, ..., pn
+pn %/% 1:pn are the results of the integer divisions by 1, 2, ..., pn
+sum(pn / 1:pn == pn %/% 1:pn) are how many of these are equal, i.e., the number of integer divisors of pn. If this number is 2, you have a prime.
+
+In [28]:
+
+prime_check <- function(num) {
+   if (num == 2) {
+      return(TRUE)
+   } else if (any(num %% 2:(num-1) == 0)) {
+      return(FALSE)
+   } else { 
+      return(TRUE)
+   }
+}
+
+In [29]:
+# Alternatively:
+prime_check <- function(num){
+  # Could put more checks for negative numbers etc...
+  if (num == 2) {
+    return(TRUE)
+  }
+  for (x in 2:(num-1)){
+      
+    if ((num%%x) == 0){
+      return(FALSE)
+    }
+  }
+  return(TRUE)
+  
+}
+
+
+In [30]:
+prime_check(2)
+
+Out[30]:
+TRUE
+
+In [31]:
+prime_check(5)
+
+Out[31]:
+TRUE
+
+In [32]:
+prime_check(4)
+
+Out[32]:
+FALSE
+
+In [33]:
+prime_check(237)
+
+Out[33]:
+FALSE
+
+In [34]:
+prime_check(131)
+
+Out[34]:
+TRUE
+
+
+
