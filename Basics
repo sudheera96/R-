@@ -6,6 +6,7 @@ R Basics ¶
 ●	Comparison operators
 ●	Vector Selection and Indexing
 
+
 What is two to the power of five?
 In [1]:
 x<-2^5
